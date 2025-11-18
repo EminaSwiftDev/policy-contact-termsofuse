@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KvassCraft: Fermentoria Lab — Terms of Use & Privacy Policy</title>
+  <style>
+    :root {
+      --bg-deep: #050e1a;
+      --bg-navy: #05172b;
+      --bg-amber: #e59332;
+      --bg-amber-deep: #b35a16;
+      --text-main: #fdf7ea;
+      --text-soft: #d9c9ad;
+      --accent: #f3a743;
+      --card-bg: #0b1827;
+      --border-soft: rgba(255, 198, 126, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.06), transparent 55%),
+        linear-gradient(180deg, var(--bg-deep) 0%, #07162a 40%, #050f1c 70%, #120c0b 100%);
+      color: var(--text-main);
+      padding: 32px 16px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.6;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.5' cy='0.5' r='0.9'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='0.12'/%3E%3Cstop offset='1' stop-color='%23000000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='160' height='160' fill='%23000000'/%3E%3Ccircle cx='20' cy='18' r='1' fill='url(%23g)'/%3E%3Ccircle cx='90' cy='70' r='1.2' fill='url(%23g)'/%3E%3Ccircle cx='130' cy='40' r='1' fill='url(%23g)'/%3E%3Ccircle cx='40' cy='120' r='1' fill='url(%23g)'/%3E%3Ccircle cx='140' cy='130' r='1.2' fill='url(%23g)'/%3E%3C/svg%3E");
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 1040px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .kvass-card {
+      background: radial-gradient(circle at top left, rgba(245, 187, 105, 0.15), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(150, 82, 34, 0.35), transparent 70%),
+                  var(--card-bg);
+      border-radius: 32px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.7);
+      padding: 28px 26px 32px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kvass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.08),
+        transparent 40%,
+        transparent 60%,
+        rgba(255, 138, 43, 0.16)
+      );
+      opacity: 0.7;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    header.kvass-header {
+      position: relative;
+      z-index: 1;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 207, 145, 0.22);
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .app-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .app-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(242, 189, 116, 0.7);
+      background: linear-gradient(120deg, rgba(243, 178, 86, 0.1), rgba(241, 134, 36, 0.22));
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .app-pill span.icon {
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 1.2vw + 1.4rem, 2rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 span.highlight {
+      color: var(--accent);
+    }
+
+    .app-meta {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    .wheat-mark {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .wheat-mark svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+    }
+
+    nav.policy-nav {
+      position: relative;
+      z-index: 1;
+      margin: 10px 0 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.82rem;
+    }
+
+    .policy-nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-soft);
+      text-decoration: none;
+      background: rgba(4, 18, 34, 0.7);
+    }
+
+    .policy-nav a.primary {
+      border-color: rgba(243, 167, 67, 0.5);
+      background: linear-gradient(135deg, #1a2740, #251825);
+      color: var(--accent);
+    }
+
+    .policy-body {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1.3fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .policy-body {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .policy-main {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    .policy-main h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin: 20px 0 8px;
+      color: var(--accent);
+    }
+
+    .policy-main h3 {
+      font-size: 0.95rem;
+      margin: 14px 0 6px;
+      color: var(--text-main);
+    }
+
+    .policy-main p {
+      margin-bottom: 8px;
+    }
+
+    .policy-main ul {
+      margin: 4px 0 10px 20px;
+    }
+
+    .policy-main li {
+      margin-bottom: 4px;
+    }
+
+    .accent-note {
+      border-radius: 14px;
+      border: 1px dashed rgba(244, 188, 113, 0.7);
+      background: linear-gradient(135deg, rgba(244, 190, 119, 0.13), rgba(5, 17, 33, 0.9));
+      padding: 10px 12px;
+      font-size: 0.82rem;
+      margin-bottom: 10px;
+    }
+
+    .accent-note strong {
+      color: var(--accent);
+    }
+
+    .policy-side {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .side-card {
+      border-radius: 18px;
+      border: 1px solid rgba(244, 189, 116, 0.45);
+      background: radial-gradient(circle at top left, rgba(244, 189, 116, 0.3), transparent 65%),
+                  rgba(3, 14, 29, 0.9);
+      padding: 14px 14px 14px;
+    }
+
+    .side-card h2 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .side-meta {
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    code.bundle {
+      font-size: 0.8rem;
+      padding: 2px 6px;
+      border-radius: 99px;
+      background: rgba(5, 20, 40, 0.9);
+      border: 1px solid rgba(247, 203, 133, 0.4);
+      color: var(--accent);
+    }
+
+    a.mail-link {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a.mail-link:hover {
+      text-decoration: underline;
+    }
+
+    footer.page-footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: rgba(233, 215, 190, 0.7);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="page-wrapper">
+    <article class="kvass-card">
+      <header class="kvass-header">
+        <div class="app-title-block">
+          <div class="app-pill">
+            <span class="icon">🌾</span>
+            <span>Legal Brew Notes</span>
+          </div>
+          <h1>
+            <span class="highlight">KvassCraft: Fermentoria Lab</span>
+            &nbsp;Terms of Use &amp; Privacy Policy
+          </h1>
+          <p class="app-meta">
+            Developed by <strong>Zejna Emina</strong> · Bundle ID: <code class="bundle">com.yourco.kvasscraft</code><br />
+            Contact: <a class="mail-link" href="mailto:eminazejna@icloud.com">eminazejna@icloud.com</a>
+          </p>
+        </div>
+        <div class="wheat-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3c-1.2 1.6-2 3.5-2 5.5S10.8 12.9 12 14.5c1.2-1.6 2-3.5 2-5.5S13.2 4.6 12 3z" />
+            <path d="M12 2v20" />
+            <path d="M9 8l-3-2" />
+            <path d="M9 12l-3 1.5" />
+            <path d="M15 8l3-2" />
+            <path d="M15 12l3 1.5" />
+          </svg>
+          <span>Effective date: 18 November 2025</span>
+        </div>
+      </header>
+
+      <nav class="policy-nav" aria-label="Policy navigation">
+        <a href="#terms" class="primary">Terms of Use</a>
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="policy-body">
+        <section class="policy-main">
+          <div class="accent-note">
+            <strong>Friendly note.</strong> This text is intended as a clear summary of how KvassCraft: Fermentoria Lab
+            works and what you can expect. It does not replace independent legal advice in your jurisdiction.
+          </div>
+
+          <h2 id="terms">1. Terms of Use</h2>
+
+          <h3>1.1 Acceptance of terms</h3>
+          <p>
+            By downloading, installing or using <strong>KvassCraft: Fermentoria Lab</strong> (the "App"), you agree to
+            be bound by these Terms of Use (the "Terms"). If you do not agree to the Terms, please do not use the App.
+          </p>
+
+          <h3>1.2 Eligibility</h3>
+          <p>
+            You may use the App only if you are legally allowed to form a binding contract in your jurisdiction. If you
+            are using the App on behalf of another person or entity, you confirm that you have authority to do so and that
+            they also agree to these Terms.
+          </p>
+
+          <h3>1.3 Purpose of the App</h3>
+          <p>
+            KvassCraft: Fermentoria Lab is a personal assistant for home brewing of kvass and similar fermented drinks.
+            The App provides timers, reminders, logging tools and general brewing information, but it does not guarantee
+            any specific results or outcomes.
+          </p>
+
+          <h3>1.4 No professional advice</h3>
+          <p>
+            Any information in the App is provided for general informational purposes only. It does not constitute
+            nutritional, medical, safety or professional advice. Always follow local food safety regulations and use your
+            own judgment when preparing and consuming fermented beverages.
+          </p>
+
+          <h3>1.5 User responsibilities</h3>
+          <p>You agree that you will:</p>
+          <ul>
+            <li>use the App only for lawful purposes and in accordance with these Terms;</li>
+            <li>not attempt to reverse engineer, decompile or otherwise tamper with the App;</li>
+            <li>not use the App to store illegal content or to harass, harm or impersonate others; and</li>
+            <li>
+              be solely responsible for the ingredients you use, brewing conditions and any consequences of brewing,
+              storing or consuming your beverages.
+            </li>
+          </ul>
+
+          <h3>1.6 Intellectual property</h3>
+          <p>
+            All content in the App, including the name <strong>KvassCraft: Fermentoria Lab</strong>, logos, artwork,
+            text, layouts and code, is owned by or licensed to <strong>Zejna Emina</strong> and is protected by
+            applicable copyright and other intellectual property laws. You are granted a limited, non-transferable,
+            revocable license to use the App solely for personal, non-commercial purposes.
+          </p>
+
+          <h3>1.7 Third-party services</h3>
+          <p>
+            The App may use third-party services (such as analytics or crash reporting) that have their own terms of use
+            and privacy policies. Your use of those services is governed by their respective terms.
+          </p>
+
+          <h3>1.8 Disclaimer of warranties</h3>
+          <p>
+            The App is provided on an "as is" and "as available" basis, without any warranties of any kind, whether
+            express or implied. To the maximum extent permitted by law, the developer disclaims all warranties, including
+            without limitation implied warranties of merchantability, fitness for a particular purpose and
+            non-infringement.
+          </p>
+
+          <h3>1.9 Limitation of liability</h3>
+          <p>
+            To the fullest extent permitted by law, <strong>Zejna Emina</strong> shall not be liable for any indirect,
+            incidental, special, consequential or punitive damages, or for any loss of data, revenue or profits, arising
+            from or related to your use of the App. In any case, the total liability shall not exceed the amount (if any)
+            you paid to download or use the App.
+          </p>
+
+          <h3>1.10 Termination</h3>
+          <p>
+            You may stop using the App at any time by uninstalling it from your devices. The developer may suspend or
+            terminate your access to the App if you materially breach these Terms or if continued operation of the App is
+            no longer commercially or technically viable.
+          </p>
+
+          <h3>1.11 Changes to the Terms</h3>
+          <p>
+            These Terms may be updated from time to time, for example when features change or new legal requirements
+            apply. When material changes are made, a notice may be shown in the App or via the app store listing. Your
+            continued use of the App after changes take effect means you accept the revised Terms.
+          </p>
+
+          <h2 id="privacy">2. Privacy Policy</h2>
+
+          <h3>2.1 Overview</h3>
+          <p>
+            This Privacy Policy explains how <strong>Zejna Emina</strong> ("we", "us") collects, uses and protects
+            information in connection with the KvassCraft: Fermentoria Lab App.
+          </p>
+
+          <h3>2.2 Data we may collect</h3>
+          <p>
+            Depending on your platform settings and how you use the App, we may collect the following types of
+            information:
+          </p>
+          <ul>
+            <li>
+              <strong>Usage data.</strong> Anonymous or aggregated information about how often you open the App, which
+              screens are used and basic technical information about your device (such as model and operating system
+              version).
+            </li>
+            <li>
+              <strong>Crash and diagnostics data.</strong> Error reports that help us understand and fix bugs. This may
+              be provided by your device's operating system or a third-party crash reporting service.
+            </li>
+            <li>
+              <strong>Brewing logs and notes.</strong> Any batches, recipes, timers or notes you enter into the App are
+              stored locally on your device, unless specifically noted otherwise by a cloud backup feature provided by
+              your platform (for example, iCloud backup managed by Apple).
+            </li>
+          </ul>
+
+          <h3>2.3 How we use information</h3>
+          <p>We use the information described above to:</p>
+          <ul>
+            <li>operate and improve the App's functionality and reliability;</li>
+            <li>understand which features are helpful and which may need improvement;</li>
+            <li>fix crashes and technical issues; and</li>
+            <li>protect the security and integrity of the App.</li>
+          </ul>
+
+          <h3>2.4 Data storage and retention</h3>
+          <p>
+            Brewing-related content you create inside the App (such as batches, timers and notes) is primarily stored on
+            your device and is under your control. We do not read your personal brewing notes.
+          </p>
+          <p>
+            Anonymous analytics or crash data, where used, may be stored by third-party providers for as long as
+            necessary for diagnostics and improvement, in line with their own retention policies.
+          </p>
+
+          <h3>2.5 Third-party services</h3>
+          <p>
+            The App may rely on third-party services provided by Apple or other vendors (for example, app store
+            infrastructure, analytics, crash reporting or cloud backup). These services may collect information in
+            accordance with their own privacy policies. We encourage you to review the privacy policies of such
+            services.
+          </p>
+
+          <h3>2.6 Children</h3>
+          <p>
+            The App is not directed to children under the age at which they can legally consent to data processing in
+            their jurisdiction. We do not knowingly collect personal information from children. If you believe that a
+            child has provided us with personal information, please contact us and we will take appropriate steps.
+          </p>
+
+          <h3>2.7 Your choices</h3>
+          <p>
+            You can control many data-related settings via your device or operating system, such as resetting
+            advertising identifiers, disabling analytics or limiting crash reporting, where your platform provides such
+            options.
+          </p>
+          <p>
+            You can delete brewing data stored in the App at any time, for example by clearing batches or uninstalling
+            the App, which removes local data from your device (subject to any external backups you control).
+          </p>
+
+          <h3>2.8 Data security</h3>
+          <p>
+            We take reasonable technical and organizational measures to help protect information processed through the
+            App. However, no method of electronic transmission or storage is completely secure, and we cannot guarantee
+            absolute security.
+          </p>
+
+          <h3>2.9 Changes to this Privacy Policy</h3>
+          <p>
+            We may update this Privacy Policy from time to time. The "Effective date" at the top of this page shows when
+            it was last revised. Material changes may also be announced in the App or via the app store listing.
+          </p>
+
+          <h2 id="contact">3. Contact</h2>
+          <p>
+            If you have any questions about these Terms or this Privacy Policy, or if you would like to exercise any
+            applicable rights under data protection laws, please contact:
+          </p>
+          <p>
+            <strong>Zejna Emina</strong><br />
+            Email: <a class="mail-link" href="mailto:eminazejna@icloud.com">eminazejna@icloud.com</a><br />
+            Regarding: <em>KvassCraft: Fermentoria Lab — Legal</em>
+          </p>
+        </section>
+
+        <aside class="policy-side" aria-label="Summary and key facts">
+          <section class="side-card">
+            <h2>Quick summary</h2>
+            <p>
+              KvassCraft: Fermentoria Lab helps you plan, time and log your kvass batches. You stay in control of your
+              ingredients and brewing decisions.
+            </p>
+            <p class="side-meta">
+              • No account required<br />
+              • Brewing notes stay on your device<br />
+              • Limited anonymous diagnostics may be used to improve stability
+            </p>
+          </section>
+
+          <section class="side-card">
+            <h2>Your responsibilities</h2>
+            <p>
+              Always follow food safety rules and local laws. The App is a guide, not a substitute for safe brewing
+              practices or professional advice.
+            </p>
+          </section>
+
+          <section class="side-card">
+            <h2>Current release</h2>
+            <p>
+              App: <strong>KvassCraft: Fermentoria Lab</strong><br />
+              Developer: <strong>Zejna Emina</strong><br />
+              Bundle: <code class="bundle">com.yourco.kvasscraft</code>
+            </p>
+            <p class="side-meta">Policy last brewed on 18 November 2025.</p>
+          </section>
+        </aside>
+      </div>
+    </article>
+
+    <footer class="page-footer">
+      This page is provided for your convenience and does not constitute legal advice.
+    </footer>
+  </div>
+</body>
+</html>
